@@ -1,0 +1,1 @@
+{"id": "symptom-test-1", "text": "Patient has persistent headache and nausea.", "label": "medical", "choices": ["electronics", "medical", "legal"], "metadata": {"dataset": "symptom2disease"}}

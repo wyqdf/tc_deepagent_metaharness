@@ -1,0 +1,57 @@
+run:
+  name: oss120b_deepagent_opus46_5rounds
+  rounds: 5
+  seed: 42
+
+preflight:
+  enabled: true
+
+solver:
+  model: gpt-oss-120b
+  base_url_env: SOLVER_BASE_URL
+  api_key_env: SOLVER_API_KEY
+  default_base_url: https://9527code.com/v1
+  api_base: https://9527code.com/v1
+  api_key: ""
+  temperature: 0.0
+  max_tokens: 512
+  timeout_ms: 300000
+  stub: false
+
+proposer:
+  backend: deepagent
+  model: claude-opus-4-6
+  base_url_env: ANTHROPIC_BASE_URL
+  auth_token_env: ANTHROPIC_AUTH_TOKEN
+  timeout_ms_env: API_TIMEOUT_MS
+  default_base_url: https://doro.lol
+  base_url: https://doro.lol
+  auth_token: ""
+  dry_run: false
+
+datasets:
+  - name: uspto
+    train: data/uspto/train.jsonl
+    val: data/uspto/val.jsonl
+    test: data/uspto/test.jsonl
+  - name: symptom2disease
+    train: data/symptom2disease/train.jsonl
+    val: data/symptom2disease/val.jsonl
+    test: data/symptom2disease/test.jsonl
+  - name: lawbench
+    train: data/lawbench/train.jsonl
+    val: data/lawbench/val.jsonl
+    test: data/lawbench/test.jsonl
+
+candidate:
+  baselines:
+    - no_memory
+    - fewshot_all
+  output_dir: agents
+
+evaluation:
+  validation_split: val
+  final_split: test
+  max_workers: 6
+  agent_protocol_only: true
+  combined_eval: false

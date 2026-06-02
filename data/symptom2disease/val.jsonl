@@ -1,0 +1,1 @@
+{"id": "symptom-val-1", "text": "Patient reports chest pain and shortness of breath.", "label": "medical", "choices": ["electronics", "medical", "legal"], "metadata": {"dataset": "symptom2disease"}}

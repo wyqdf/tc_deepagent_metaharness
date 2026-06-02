@@ -1,0 +1,1 @@
+{"id": "law-train-1", "text": "The contract dispute concerns breach, damages, and liability.", "label": "legal", "choices": ["electronics", "medical", "legal"], "metadata": {"dataset": "lawbench"}}

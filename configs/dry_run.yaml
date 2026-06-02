@@ -1,0 +1,44 @@
+run:
+  name: dry_cli_loop
+  rounds: 1
+  seed: 42
+
+preflight:
+  enabled: true
+
+solver:
+  model: stub
+  stub: true
+  stub_response: '{"final_answer": "electronics"}'
+
+proposer:
+  backend: deepagent
+  model: claude-opus-4-6
+  dry_run: true
+
+datasets:
+  - name: uspto
+    train: data/uspto/train.jsonl
+    val: data/uspto/val.jsonl
+    test: data/uspto/test.jsonl
+  - name: symptom2disease
+    train: data/symptom2disease/train.jsonl
+    val: data/symptom2disease/val.jsonl
+    test: data/symptom2disease/test.jsonl
+  - name: lawbench
+    train: data/lawbench/train.jsonl
+    val: data/lawbench/val.jsonl
+    test: data/lawbench/test.jsonl
+
+candidate:
+  baselines:
+    - no_memory
+    - fewshot_all
+  output_dir: agents
+
+evaluation:
+  validation_split: val
+  final_split: test
+  max_workers: 2
+  agent_protocol_only: true
+  combined_eval: false

@@ -1,0 +1,1 @@
+{"id": "uspto-train-1", "text": "A semiconductor patent describing a transistor gate and integrated circuit.", "label": "electronics", "choices": ["electronics", "medical", "legal"], "metadata": {"dataset": "uspto"}}

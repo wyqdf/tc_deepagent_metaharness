@@ -1,0 +1,80 @@
+run:
+  name: oss120b_deepagent_opus46_5rounds_clean_official_workflow_20260524
+  rounds: 5
+  seed: 42
+
+preflight:
+  enabled: true
+
+solver:
+  model: gpt-oss-120b
+  base_url_env: SOLVER_BASE_URL
+  api_key_env: SOLVER_API_KEY
+  default_base_url: https://9527code.com/v1
+  api_base: https://9527code.com/v1
+  api_key: ""
+  temperature: 1.0
+  max_tokens: 16384
+  timeout_ms: 300000
+  max_retries: 3
+  retry_sleep_seconds: 2.0
+  stub: false
+
+proposer:
+  backend: deepagent
+  model: claude-opus-4-6
+  base_url_env: ANTHROPIC_BASE_URL
+  auth_token_env: ANTHROPIC_AUTH_TOKEN
+  timeout_ms_env: API_TIMEOUT_MS
+  default_base_url: https://doro.lol
+  base_url: https://doro.lol
+  auth_token: ""
+  max_retries: 2
+  retry_sleep_seconds: 10.0
+  dry_run: false
+
+datasets:
+  - name: USPTO
+    train: /home/wyqdf/harness/meta-harness/reference_examples/text_classification/data/uspto/train.jsonl
+    val: /home/wyqdf/harness/meta-harness/reference_examples/text_classification/data/uspto/val.jsonl
+    test: /home/wyqdf/harness/meta-harness/reference_examples/text_classification/data/uspto/test.jsonl
+  - name: Symptom2Disease
+    train: /home/wyqdf/harness/meta-harness/reference_examples/text_classification/data/symptom_diagnosis/train.jsonl
+    val: /home/wyqdf/harness/meta-harness/reference_examples/text_classification/data/symptom_diagnosis/val.jsonl
+    test: /home/wyqdf/harness/meta-harness/reference_examples/text_classification/data/symptom_diagnosis/test.jsonl
+  - name: LawBench
+    train: /home/wyqdf/harness/meta-harness/reference_examples/text_classification/data/crime_prediction/train.jsonl
+    val: /home/wyqdf/harness/meta-harness/reference_examples/text_classification/data/crime_prediction/val.jsonl
+    test: /home/wyqdf/harness/meta-harness/reference_examples/text_classification/data/crime_prediction/test.jsonl
+
+candidate:
+  baselines:
+    - no_memory
+    - fewshot_all
+  output_dir: agents
+
+evaluation:
+  validation_split: val
+  final_split: test
+  max_workers: 6
+  agent_protocol_only: true
+  combined_eval: false
+
+proposer_context:
+  max_file_chars: 80000
+  max_total_source_chars: 520000
+  include_collected_harness_sources: true
+  max_collected_source_files: 500
+  harness_source_roots:
+    - /home/wyqdf/harness/meta-harness/reference_examples/text_classification
+    - /home/wyqdf/harness/meta-harness/reference_examples/text_classification-oss
+    - /home/wyqdf/harness/meta-harness-deepagent/reference_examples/text_classification
+    - /home/wyqdf/harness/副本/meta-harness/reference_examples/text_classification
+    - /home/wyqdf/harness/副本/文本分类+deepagent/meta-harness/reference_examples/text_classification
+    - /home/wyqdf/harness/metaharness - 副本/meta-harness/reference_examples/text_classification
+  harness_source_globs:
+    - "memory_system.py"
+    - "llm.py"
+    - "agents/*.py"
+    - "systems/*.py"
+    - ".claude/skills/meta-harness/SKILL.md"

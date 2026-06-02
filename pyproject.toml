@@ -1,0 +1,21 @@
+[project]
+name = "tc-deepagent-metaharness"
+version = "0.1.0"
+description = "Compact Meta-Harness reproduction for text classification with DeepAgent proposer."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "anthropic>=0.40.0",
+  "deepagents>=0.0.0",
+  "langchain-anthropic>=0.3.0",
+  "openai>=1.0.0",
+  "pyyaml>=6.0.0",
+  "pytest>=8.0.0",
+]
+
+[project.scripts]
+tcharness = "harness.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

@@ -1,0 +1,1 @@
+{"id": "law-test-1", "text": "The judgment discusses evidence, appeal, and sentencing.", "label": "legal", "choices": ["electronics", "medical", "legal"], "metadata": {"dataset": "lawbench"}}

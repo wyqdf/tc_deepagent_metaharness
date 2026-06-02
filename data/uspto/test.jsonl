@@ -1,0 +1,1 @@
+{"id": "uspto-test-1", "text": "A patent claim about a wireless communication antenna.", "label": "electronics", "choices": ["electronics", "medical", "legal"], "metadata": {"dataset": "uspto"}}

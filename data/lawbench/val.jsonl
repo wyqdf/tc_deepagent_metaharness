@@ -1,0 +1,1 @@
+{"id": "law-val-1", "text": "The court considered whether the defendant violated the statute.", "label": "legal", "choices": ["electronics", "medical", "legal"], "metadata": {"dataset": "lawbench"}}
